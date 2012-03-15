@@ -6,3 +6,8 @@ set autoindent
 set tabstop=4
 set shiftwidth=8
 set expandtab
+colorscheme zenburn
+set guifont=Menlo:h14
+set cursorline
+:nnoremap <Leader>c :set cursorline!<CR>
+set guioptions=egmrt
