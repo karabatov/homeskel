@@ -1,1 +1,0 @@
-/root/homeskel/.vim
