@@ -35,10 +35,23 @@ export VIRTUALENV_USE_DISTRIBUTE=true
 
 # Setup Amazon EC2 Command-Line Tools
 export EC2_HOME=~/.ec2
+export EC2_KEY=ykar-devz # name only
 export PATH=$PATH:$EC2_HOME/bin
 export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
 export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+
+# Set Java home based on whether it's Mac or Linux
+ARCHI=`uname -s`
+case "$ARCHI" in
+    "Darwin")
+        export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+    ;;
+    "Linux")
+        export JAVA_HOME=/usr/lib/jvm/java-6-openjdk/
+    ;;
+    *)
+    ;;
+esac
 
 # sjl's t
 alias t='python ~/Dropbox/Documents/Programming/t/t.py --task-dir . --list todo'
@@ -54,3 +67,7 @@ alias gvim='open -a MacVim'
 
 # tmux
 alias ta='tmux attach'
+
+# ls
+alias ls='ls --color=auto'
+alias ll='ls -la'
