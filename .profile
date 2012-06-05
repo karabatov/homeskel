@@ -21,15 +21,15 @@ export PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:$PATH
 export PATH=$HOME/local/bin:/usr/local/share/python:$PATH
 source /usr/local/share/python/virtualenvwrapper.sh
 
-has_virtualenv() {
-    if [ -e .venv ]; then
-        workon `cat .venv`
-    fi
-}
-venv_cd () {
-    cd "$@" && has_virtualenv
-}
-alias cd='venv_cd'
+#has_virtualenv() {
+#    if [ -e .venv ]; then
+#        workon `cat .venv`
+#    fi
+#}
+#venv_cd () {
+#    cd "$@" && has_virtualenv
+#}
+#alias cd='venv_cd'
 
 export VIRTUALENV_USE_DISTRIBUTE=true
 
@@ -69,5 +69,5 @@ alias gvim='open -a MacVim'
 alias ta='tmux attach'
 
 # ls
-alias ls='ls --color=auto'
-alias ll='ls -la'
+#alias ls='ls --color=auto'
+#alias ll='ls -la'
