@@ -14,7 +14,7 @@ set output-meta on
 set convert-meta off
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:$PATH
+export PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
 
 # Virtualenv helpers
 # FIX TO USE LOCAL VENV
@@ -71,3 +71,10 @@ alias ta='tmux attach'
 # ls
 #alias ls='ls --color=auto'
 #alias ll='ls -la'
+
+# php-osx
+PATH=/usr/local/php5/bin:$PATH
+
+# apache & mysql
+alias dev-start='mysql.server start && echo "Starting apache..." && sudo apachectl start'
+alias dev-stop='mysql.server stop && echo "Stopping apache..." && sudo apachectl stop'
