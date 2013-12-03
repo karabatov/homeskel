@@ -18,8 +18,8 @@ export PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local
 
 # Virtualenv helpers
 # FIX TO USE LOCAL VENV
-export PATH=$HOME/local/bin:/usr/local/share/python:$PATH
-source /usr/local/share/python/virtualenvwrapper.sh
+#export PATH=$HOME/local/bin:/usr/local/share/python:$PATH
+#source /usr/local/share/python/virtualenvwrapper.sh
 
 #has_virtualenv() {
 #    if [ -e .venv ]; then
@@ -31,7 +31,7 @@ source /usr/local/share/python/virtualenvwrapper.sh
 #}
 #alias cd='venv_cd'
 
-export VIRTUALENV_USE_DISTRIBUTE=true
+#export VIRTUALENV_USE_DISTRIBUTE=true
 
 # Setup Amazon EC2 Command-Line Tools
 export EC2_HOME=~/.ec2
@@ -54,27 +54,46 @@ case "$ARCHI" in
 esac
 
 # sjl's t
-alias t='python ~/Dropbox/Documents/Programming/t/t.py --task-dir . --list todo'
-alias tf='t -f'
+#alias t='python ~/Dropbox/Documents/Programming/t/t.py --task-dir . --list todo'
+#alias tf='t -f'
 
 # Highrise console, see github.com/karabatov/ht
-source ~/homeskel/highrise.sh
-alias ht='python ~/Dropbox/Documents/Programming/ht/ht.py'
-alias htf='ht -f'
+#source ~/homeskel/highrise.sh
+#alias ht='python ~/Dropbox/Documents/Programming/ht/ht.py'
+#alias htf='ht -f'
 
 # Fix MacVim's buffer issue
 alias gvim='open -a MacVim'
 
 # tmux
-alias ta='tmux attach'
+#alias ta='tmux attach'
 
 # ls
-#alias ls='ls --color=auto'
-#alias ll='ls -la'
+alias ls='ls --color=auto'
+alias ll='ls -la'
 
 # php-osx
-PATH=/usr/local/php5/bin:$PATH
+#PATH=/usr/local/php5/bin:$PATH
 
 # apache & mysql
-alias dev-start='mysql.server start && echo "Starting apache..." && sudo apachectl start'
-alias dev-stop='mysql.server stop && echo "Stopping apache..." && sudo apachectl stop'
+#alias dev-start='mysql.server start && echo "Starting apache..." && sudo apachectl start'
+#alias dev-stop='mysql.server stop && echo "Stopping apache..." && sudo apachectl stop'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+# go
+export GOPATH="$HOME/Dropbox/Documents/Programming/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# mysql
+export PATH="$PATH:/usr/local/mysql/bin"
+
+# axel
+alias axel="axel -a"
+
+# git
+alias git="hub"
+
+# bzr
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
