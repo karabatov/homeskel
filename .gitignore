@@ -1,2 +1,7 @@
 *.swp
 highrise.sh
+.vim/backup
+.vim/bundle
+.vim/swap
+.vim/undo
+.vim/.netrwhist
