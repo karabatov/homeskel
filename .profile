@@ -14,24 +14,7 @@ set output-meta on
 set convert-meta off
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export PATH=/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
-
-# Virtualenv helpers
-# FIX TO USE LOCAL VENV
-#export PATH=$HOME/local/bin:/usr/local/share/python:$PATH
-#source /usr/local/share/python/virtualenvwrapper.sh
-
-#has_virtualenv() {
-#    if [ -e .venv ]; then
-#        workon `cat .venv`
-#    fi
-#}
-#venv_cd () {
-#    cd "$@" && has_virtualenv
-#}
-#alias cd='venv_cd'
-
-#export VIRTUALENV_USE_DISTRIBUTE=true
+export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
 
 # Setup Amazon EC2 Command-Line Tools
 export EC2_HOME=~/.ec2
@@ -57,23 +40,9 @@ esac
 #alias t='python ~/Dropbox/Documents/Programming/t/t.py --task-dir . --list todo'
 #alias tf='t -f'
 
-# Highrise console, see github.com/karabatov/ht
-#source ~/homeskel/highrise.sh
-#alias ht='python ~/Dropbox/Documents/Programming/ht/ht.py'
-#alias htf='ht -f'
-
-# Fix MacVim's buffer issue
-alias gvim='open -a MacVim'
-
-# tmux
-#alias ta='tmux attach'
-
 # ls
-alias ls='ls --color=auto'
+# alias ls='ls --color=auto'
 alias ll='ls -la'
-
-# php-osx
-#PATH=/usr/local/php5/bin:$PATH
 
 # apache & mysql
 #alias dev-start='mysql.server start && echo "Starting apache..." && sudo apachectl start'
@@ -81,10 +50,6 @@ alias ll='ls -la'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-# go
-export GOPATH="$HOME/Dropbox/Documents/Programming/go"
-export PATH="$PATH:$GOPATH/bin"
 
 # mysql
 export PATH="$PATH:/usr/local/mysql/bin"
@@ -94,6 +59,21 @@ alias axel="axel -a"
 
 # git
 alias git="hub"
+alias Gresettype="git status | grep typechange | awk '{print \$2}' | xargs git checkout"
 
-# bzr
-export PYTHONPATH=/usr/local/lib/python2.7/site-packages:$PYTHONPATH
+# Haskell
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
+# Node
+export PATH="$HOME/local/bin:$PATH"
+
+# Swift
+export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"$PATH"
+export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
+
+# pass
+source /usr/local/etc/bash_completion.d/password-store
+
+# editor
+export VISUAL="mvim"
+export EDITOR="vim"
