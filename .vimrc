@@ -112,6 +112,9 @@ set autoread
 " Syntax highlighting
 syntax on
 
+" Don't apply autoindent to paste
+set pastetoggle=<F2>
+
 " Line numbers
 set number
 
@@ -280,6 +283,9 @@ set synmaxcol=400 " Helps prevent vim from choking on long lines
 " File changes
 set autoread
 au CursorHold,BufWinEnter * checktime
+
+" Relative line numbers
+set relativenumber
 
 " NERDTree
 " nnoremap <silent> <tab><tab> :NERDTreeToggle<CR>
