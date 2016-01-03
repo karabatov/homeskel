@@ -65,6 +65,7 @@ Plugin 'Valloric/ListToggle'
 " Swift
 Plugin 'toyamarinyon/vim-swift'
 " Plugin 'kballard/vim-swift-extra'
+Plugin 'karabatov/swiftb'
 
 " Syntastic
 Plugin 'scrooloose/syntastic'
@@ -384,7 +385,6 @@ nnoremap <leader>fu :CtrlPFunky<CR>
 " let g:delimitMate_expand_cr = 1
 
 " Syntastic
-let g:syntastic_swift_checkers = ['swiftb']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
