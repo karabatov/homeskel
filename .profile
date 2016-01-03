@@ -75,5 +75,9 @@ export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
 source /usr/local/etc/bash_completion.d/password-store
 
 # editor
-export VISUAL="mvim"
+export VISUAL="vim"
 export EDITOR="vim"
+
+# proxy
+alias proxy-on="`pass script/proxy-on`"
+

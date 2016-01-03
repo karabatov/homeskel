@@ -1,10 +1,10 @@
-if exists("g:loaded_syntastic_swift_swiftc_checker")
+if exists("g:loaded_syntastic_swift_swiftb_checker")
     finish
 endif
-let g:loaded_syntastic_swift_swiftc_checker = 1
+let g:loaded_syntastic_swift_swiftb_checker = 1
 
-function! SyntaxCheckers_swift_swiftc_GetLocList() dict
-    let makeprg = 'xcrun swiftc -parse ' . shellescape(expand("%"))
+function! SyntaxCheckers_swift_swiftb_GetLocList() dict
+    let makeprg = 'swift build'
     let errorformat =
                 \ '%E%f:%l:%c: error: %m,' .
                 \ '%W%f:%l:%c: warning: %m,' .
@@ -18,4 +18,4 @@ endfunction
 
 call g:SyntasticRegistry.CreateAndRegisterChecker({
             \ 'filetype': 'swift',
-            \ 'name': 'swiftc'})
+            \ 'name': 'swiftb'})

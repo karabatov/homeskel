@@ -53,9 +53,6 @@ Plugin 'tpope/vim-fugitive'
 " Dash
 " Plugin 'rizzatti/dash.vim'
 
-" Syntastic
-" Plugin 'scrooloose/syntastic'
-
 " DelimitMate
 " Plugin 'Raimondi/delimitMate'
 
@@ -386,13 +383,10 @@ nnoremap <leader>fu :CtrlPFunky<CR>
 " DelimitMate
 " let g:delimitMate_expand_cr = 1
 
-" au Filetype swift set makeprg=xcrun\ swiftc\ -parse\ %
-" au Filetype swift set errorformat=%E%f:%l:%c: error: %m,%W%f:%l:%c: warning: %m,%Z%\s%#^~%#,%-G%.%#
-
 " Syntastic
-let g:syntastic_swift_checkers = ['swiftc']
+let g:syntastic_swift_checkers = ['swiftb']
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
