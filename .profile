@@ -79,7 +79,7 @@ export VISUAL="vim"
 export EDITOR="vim"
 
 # proxy
-alias proxy-on="`pass script/proxy-on`"
+alias proxy-on="ssh -N tunnel@socks.yurikarabatov.com -D 3128"
 
 # open files
 ulimit -n 4096
