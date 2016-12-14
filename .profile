@@ -49,7 +49,7 @@ alias ll='ls -la'
 #alias dev-stop='mysql.server stop && echo "Stopping apache..." && sudo apachectl stop'
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+#export PATH="/usr/local/heroku/bin:$PATH"
 
 # mysql
 export PATH="$PATH:/usr/local/mysql/bin"
@@ -62,38 +62,29 @@ alias git="hub"
 alias Gresettype="git status | grep typechange | awk '{print \$2}' | xargs git checkout"
 
 # Haskell
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+#export PATH="$HOME/Library/Haskell/bin:$PATH"
 
 # Node
 export PATH="$HOME/local/bin:$PATH"
 
 # Swift
-export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"$PATH"
-export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
+#export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"$PATH"
+#export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
 
-# pass
+# completion
 source /usr/local/etc/bash_completion.d/password-store
+source /usr/local/etc/bash_completion.d/git-completion.bash
+source /usr/local/etc/bash_completion.d/git-flow-completion.bash
 
 # editor
-export VISUAL="vim"
-export EDITOR="vim"
+export VISUAL="nvim"
+export EDITOR="nvim"
 
 # proxy
-alias proxy-on="ssh -N tunnel@socks.yurikarabatov.com -D 3128"
+alias proxy-on="ssh -N root@socks.yurikarabatov.com -D 3128"
 
 # open files
 ulimit -n 4096
 
-# Docker
-# Kill all running containers.
-alias dockerkillall='docker kill $(docker ps -q)'
-# Delete all stopped containers.
-alias dockercleanc='printf "\n>>> Deleting stopped containers\n\n" && docker rm $(docker ps -a -q)'
-# Delete all untagged images.
-alias dockercleani='printf "\n>>> Deleting untagged images\n\n" && docker rmi $(docker images -q -f dangling=true)'
-# Delete all stopped containers and untagged images.
-alias dockerclean='dockercleanc || true && dockercleani'
-
-# Connect docker client to Docker Toolbox's boot2docker VM
-# (A docker-machine created VirtualBox VM called 'default')
-eval $(docker-machine env default)
+# Racket
+export PATH="/Applications/Racket v6.6/bin:$PATH"

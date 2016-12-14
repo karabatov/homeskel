@@ -81,6 +81,9 @@ Plugin 'tacahiroy/ctrlp-funky'
 " Colorschemes
 Plugin 'flazz/vim-colorschemes'
 
+" nofrils
+Plugin 'robertmeta/nofrils'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 " filetype plugin indent on    " required
