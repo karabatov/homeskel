@@ -7,7 +7,7 @@ if [ "$BASH" ]; then
 fi
 
 export PS1="\[\e[36;1m\]\u \[\e[32;1m\]\W\[\e[0m\] \$ "
-export LANG=ru_RU.UTF-8
+export LANG=en_US.UTF-8
 set meta-flag on
 set input-meta on
 set output-meta on
