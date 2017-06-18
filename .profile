@@ -17,11 +17,11 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
 
 # Setup Amazon EC2 Command-Line Tools
-export EC2_HOME=~/.ec2
-export EC2_KEY=ykar-devz # name only
-export PATH=$PATH:$EC2_HOME/bin
-export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
-export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
+# export EC2_HOME=~/.ec2
+# export EC2_KEY=ykar-devz # name only
+# export PATH=$PATH:$EC2_HOME/bin
+# export EC2_PRIVATE_KEY=`ls $EC2_HOME/pk-*.pem`
+# export EC2_CERT=`ls $EC2_HOME/cert-*.pem`
 
 # Set Java home based on whether it's Mac or Linux
 ARCHI=`uname -s`
