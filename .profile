@@ -72,9 +72,11 @@ export PATH="$HOME/local/bin:$PATH"
 #export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
 
 # completion
-source /usr/local/etc/bash_completion.d/password-store
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/etc/bash_completion.d/git-flow-completion.bash
+if [ "$(uname)" == "Darwin" ]; then
+    source /usr/local/etc/bash_completion.d/password-store
+    source /usr/local/etc/bash_completion.d/git-completion.bash
+    source /usr/local/etc/bash_completion.d/git-flow-completion.bash
+fi
 
 # editor
 export VISUAL="nvim"
