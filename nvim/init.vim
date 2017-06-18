@@ -2,6 +2,13 @@
 set langmenu=none
 language C
 
+" Plugins
+call plug#begin('~/.config/nvim/plugged')
+Plug 'neomake/neomake'
+Plug 'freitass/todo.txt-vim'
+Plug 'plasticboy/vim-markdown'
+call plug#end()
+
 " Syntax highlighting
 syntax on
 
@@ -31,9 +38,9 @@ set fileencodings=utf-8,cp1251,koi8-r,cp866
 set encoding=utf-8
 set termencoding=utf-8
 
-" displaying tab characters and trailing spaces 
-" with special characters \u2592\u2591 and \u2593 
-set lcs=tab:▒░,trail:▓ 
+" displaying tab characters and trailing spaces
+" with special characters \u2592\u2591 and \u2593
+set lcs=tab:▒░,trail:▓
 set list
 
 " Line movement: move by screen lines, not file lines
@@ -42,7 +49,7 @@ noremap k gk
 noremap gj j
 noremap gk k
 
-" Show current mode in status line 
+" Show current mode in status line
 set showmode
 
 " Bell visually
@@ -106,6 +113,10 @@ inoremap <C-s> <ESC>:w<CR>
 " Save on lose focus
 au FocusLost * :wa
 
+" Cycle buffers
+nnoremap <C-Tab> :bn<CR>
+nnoremap <C-S-Tab> :bp<CR>
+
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
@@ -119,7 +130,7 @@ nnoremap <leader>rv :so $MYVIMRC<CR>
 " Auto reload nvimrc on save
  augroup myvimrc
     au!
-    au BufWritePost init.vim so $MYVIMRC
+    au BufWritePost $MYVIMRC so $MYVIMRC
  augroup END
 
 " Open a new vertical split
@@ -140,6 +151,19 @@ au CursorHold,BufWinEnter * checktime
 
 " Relative line numbers
 set relativenumber
+
+" C filetype
+augroup project
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+".doxygen
+augroup END
+
+" Neomake
+autocmd! BufWritePost * Neomake
+
+" make run
+nnoremap <leader>mr :!make run<CR>
 
 " Russian
 " :set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,[!"№%:,.;()_+[]\;',./{}||:"<>?;~!@#$%^&*()_+[]\;',./{}|:"<>?

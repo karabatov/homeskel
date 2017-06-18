@@ -5,3 +5,5 @@ highrise.sh
 .vim/swap
 .vim/undo
 .vim/.netrwhist
+nvim/.netrwhist
+nvim/plugged

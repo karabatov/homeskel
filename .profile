@@ -81,10 +81,13 @@ export VISUAL="nvim"
 export EDITOR="nvim"
 
 # proxy
-alias proxy-on="ssh -N root@socks.yurikarabatov.com -D 3128"
+# alias proxy-on="ssh -N root@socks.yurikarabatov.com -D 3128"
 
 # open files
 ulimit -n 4096
 
 # Racket
-export PATH="/Applications/Racket v6.6/bin:$PATH"
+# export PATH="/Applications/Racket v6.6/bin:$PATH"
+
+# Todo.txt
+alias t="topydo"
