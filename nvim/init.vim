@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neomake/neomake'
 Plug 'freitass/todo.txt-vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'junegunn/goyo.vim'
 call plug#end()
 
 " Syntax highlighting
@@ -165,5 +166,8 @@ autocmd! BufWritePost * Neomake
 " make run
 nnoremap <leader>mr :!make run<CR>
 
+" Change dir to current file
+autocmd BufEnter * silent! lcd %:p:h
+
 " Russian
-" :set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,[!"№%:,.;()_+[]\;',./{}||:"<>?;~!@#$%^&*()_+[]\;',./{}|:"<>?
+:set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,[!"№%:,.;()_+[]\;',./{}||:"<>?;~!@#$%^&*()_+[]\;',./{}|:"<>?
