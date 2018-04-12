@@ -73,7 +73,7 @@ export PATH="$HOME/local/bin:$PATH"
 
 # completion
 if [ "$(uname)" == "Darwin" ]; then
-    source /usr/local/etc/bash_completion.d/password-store
+    source /usr/local/etc/bash_completion.d/pass
     source /usr/local/etc/bash_completion.d/git-completion.bash
     source /usr/local/etc/bash_completion.d/git-flow-completion.bash
 fi
@@ -93,3 +93,6 @@ ulimit -n 4096
 
 # Todo.txt
 alias t="topydo"
+
+# Go
+export PATH="$HOME/go/bin:$PATH"

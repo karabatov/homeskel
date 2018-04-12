@@ -8,6 +8,7 @@ Plug 'neomake/neomake'
 Plug 'freitass/todo.txt-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'junegunn/goyo.vim'
+Plug 'fatih/vim-go'
 call plug#end()
 
 " Syntax highlighting
@@ -115,8 +116,11 @@ inoremap <C-s> <ESC>:w<CR>
 au FocusLost * :wa
 
 " Cycle buffers
-nnoremap <C-Tab> :bn<CR>
-nnoremap <C-S-Tab> :bp<CR>
+nnoremap <C-Tab> :bnext<CR>
+nnoremap <C-S-Tab> :bprevious<CR>
+
+" Jump to buffer
+nnoremap <Leader>f :set nomore<Bar>:ls<Bar>:set more<CR>:b<Space>
 
 " Strip all trailing whitespace in the current file
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
