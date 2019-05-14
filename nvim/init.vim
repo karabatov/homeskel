@@ -5,10 +5,19 @@ language C
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neomake/neomake'
+Plug 'cloudhead/neovim-fuzzy'
 Plug 'freitass/todo.txt-vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'kien/rainbow_parentheses.vim'
+
+" Go
 Plug 'junegunn/goyo.vim'
 Plug 'fatih/vim-go'
+
+" Clojure
+Plug 'tpope/vim-fireplace'
+Plug 'guns/vim-clojure-static'
+Plug 'venantius/vim-cljfmt'
 call plug#end()
 
 " Syntax highlighting
@@ -172,6 +181,15 @@ nnoremap <leader>mr :!make run<CR>
 
 " Change dir to current file
 autocmd BufEnter * silent! lcd %:p:h
+
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" fzy
+nnoremap <C-p> :FuzzyOpen<CR>
 
 " Russian
 :set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,[!"№%:,.;()_+[]\;',./{}||:"<>?;~!@#$%^&*()_+[]\;',./{}|:"<>?

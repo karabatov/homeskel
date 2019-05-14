@@ -60,6 +60,7 @@ alias axel="axel -a"
 # git
 alias git="hub"
 alias Gresettype="git status | grep typechange | awk '{print \$2}' | xargs git checkout"
+export GITHUB_USERNAME="karabatov"
 
 # Haskell
 #export PATH="$HOME/Library/Haskell/bin:$PATH"
@@ -96,3 +97,9 @@ alias t="topydo"
 
 # Go
 export PATH="$HOME/go/bin:$PATH"
+
+# Löve
+alias love="/Applications/love.app/Contents/MacOS/love"
+
+# Display sleep
+alias displaysleep="pmset displaysleepnow"
