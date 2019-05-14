@@ -48,9 +48,6 @@ alias ll='ls -la'
 #alias dev-start='mysql.server start && echo "Starting apache..." && sudo apachectl start'
 #alias dev-stop='mysql.server stop && echo "Stopping apache..." && sudo apachectl stop'
 
-### Added by the Heroku Toolbelt
-#export PATH="/usr/local/heroku/bin:$PATH"
-
 # mysql
 export PATH="$PATH:/usr/local/mysql/bin"
 
@@ -58,26 +55,19 @@ export PATH="$PATH:/usr/local/mysql/bin"
 alias axel="axel -a"
 
 # git
-alias git="hub"
 alias Gresettype="git status | grep typechange | awk '{print \$2}' | xargs git checkout"
 export GITHUB_USERNAME="karabatov"
-
-# Haskell
-#export PATH="$HOME/Library/Haskell/bin:$PATH"
-
-# Node
-export PATH="$HOME/local/bin:$PATH"
 
 # Swift
 #export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"$PATH"
 #export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
 
-# completion
-if [ "$(uname)" == "Darwin" ]; then
-    source /usr/local/etc/bash_completion.d/pass
-    source /usr/local/etc/bash_completion.d/git-completion.bash
-    source /usr/local/etc/bash_completion.d/git-flow-completion.bash
-fi
+# Bash completion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # editor
 export VISUAL="nvim"
@@ -88,18 +78,6 @@ export EDITOR="nvim"
 
 # open files
 ulimit -n 4096
-
-# Racket
-# export PATH="/Applications/Racket v6.6/bin:$PATH"
-
-# Todo.txt
-alias t="topydo"
-
-# Go
-export PATH="$HOME/go/bin:$PATH"
-
-# Löve
-alias love="/Applications/love.app/Contents/MacOS/love"
 
 # Display sleep
 alias displaysleep="pmset displaysleepnow"
