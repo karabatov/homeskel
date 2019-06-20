@@ -56,6 +56,7 @@ alias axel="axel -a"
 
 # git
 alias Gresettype="git status | grep typechange | awk '{print \$2}' | xargs git checkout"
+alias Gmergepbx="git mergetool --tool=mergepbx"
 export GITHUB_USERNAME="karabatov"
 
 # Swift
