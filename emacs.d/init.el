@@ -20,7 +20,9 @@
  '(ido-enable-flex-matching t)
  '(ido-mode (quote both) nil (ido))
  '(indicate-empty-lines t)
- '(package-selected-packages (quote (deft magit labburn-theme)))
+ '(package-selected-packages
+   (quote
+    (olivetti reveal-in-osx-finder deft magit labburn-theme)))
  '(show-paren-mode t)
  '(visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow))))
 (custom-set-faces
@@ -44,12 +46,28 @@
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs-saves/" t)))
 
+;; Shrink and enlarge windows
+(global-set-key (kbd "C-S-<down>") 'enlarge-window)
+(global-set-key (kbd "C-S-<up>") 'shrink-window)
+(global-set-key (kbd "C-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
+
 ;; Deft configuration
-(setq deft-directory "~/Dropbox/Writing/Org")
+(setq deft-directory "~/OneDrive/Writing/Org")
 (global-set-key [f8] 'deft)
 (setq deft-use-filename-as-title t)
+(setq deft-use-filter-string-for-filename t)
+(setq deft-file-naming-rules '((noslash . "-")
+                              (nospace . "-")
+                              (case-fn . downcase)))
 (global-set-key (kbd "C-x C-g") 'deft-find-file)
 (setq deft-default-extension "org")
+
+;; reveal-in-osx-finder
+(global-set-key [f10] 'reveal-in-osx-finder)
+
+;; Olivetti
+(global-set-key (kbd "C-c o") 'olivetti-mode)
 
 ;; org-mode
 (global-set-key [f9] 'org-toggle-inline-images)
@@ -59,9 +77,17 @@
       `(("blog-en"
 	 :components ("blog-articles", "blog-pictures"))
 	("blog-articles"
-	 :base-directory "~/Dropbox/Writing/Org/"
+	 :base-directory "~/OneDrive/Writing/Org/"
 	 :base-extension "org"
-	 :select-tags ("blog_en")
+	 :exclude ".*"
+	 :include ("good-math.org"
+		   "principles.org"
+		   "reading-math.org"
+		   "designing-meal-size-icons.org"
+		   "ux-design-for-mobile.org"
+		   "a-case-for-a-new-blog-engine.org"
+		   "not-so-fast-on-the-app-store.org"
+		   "hayaku-tap-slide-control.org")
 	 :publishing-directory "~/emacs-publish/blog-en/"
 	 :publishing-function org-html-publish-to-html
 	 :auto-sitemap t
@@ -69,7 +95,7 @@
 	 :sitemap-title "Blog"
 	 :sitemap-sort-files anti-chronologically)
 	("blog-pictures"
-	 :base-directory "~/Dropbox/Writing/Org/Pictures/"
+	 :base-directory "~/OneDrive/Writing/Org/Pictures/"
 	 :base-extension ".*"
 	 :publishing-directory "~/emacs-publish/blog-en/Pictures/"
 	 :publishing-function org-publish-attachment
