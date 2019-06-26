@@ -87,7 +87,8 @@
 		   "ux-design-for-mobile.org"
 		   "a-case-for-a-new-blog-engine.org"
 		   "not-so-fast-on-the-app-store.org"
-		   "hayaku-tap-slide-control.org")
+		   "hayaku-tap-slide-control.org"
+		   "design-considerations-for-not-so-fast.org")
 	 :publishing-directory "~/emacs-publish/blog-en/"
 	 :publishing-function org-html-publish-to-html
 	 :auto-sitemap t
