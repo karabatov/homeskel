@@ -69,6 +69,9 @@
 ;; Olivetti
 (global-set-key (kbd "C-c o") 'olivetti-mode)
 
+;; Magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
 ;; org-mode
 (global-set-key [f9] 'org-toggle-inline-images)
 
