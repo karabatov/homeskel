@@ -1,4 +1,10 @@
 (require 'seq) ;; For seq-filter.
+(require 'org) ;; For org-publish-project
+
+(defun blog-publish-blog (project-name)
+  "Publishes PROJECT-NAME forcefully."
+  (interactive "MProject name: ")
+  (org-publish-project project-name t))
 
 (defun blog-publish-list-files (directory publish-tag)
   "Returns a list of org files in DIRECTORY
