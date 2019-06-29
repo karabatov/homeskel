@@ -76,27 +76,6 @@
 (global-set-key [f9] 'org-toggle-inline-images)
 (setq org-agenda-files '("~/OneDrive/Writing/Org/"))
 
-;; English-language blog
+;; Blog
 (load "~/.emacs.d/blog.el")
-(setq blog-en-base-directory "~/OneDrive/Writing/Org/")
-(setq org-publish-project-alist
-      `(("blog-en"
-	 :components ("blog-articles", "blog-pictures"))
-	("blog-articles"
-	 :base-directory ,blog-en-base-directory
-	 :exclude ".*"
-	 :include ,(blog-publish-list-files
-		   blog-en-base-directory
-		   "blog_en_publish")
-	 :publishing-directory "~/emacs-publish/blog-en/"
-	 :publishing-function org-html-publish-to-html
-	 :auto-sitemap t
-	 :sitemap-filename "index.org"
-	 :sitemap-title "Blog"
-	 :sitemap-sort-files anti-chronologically)
-	("blog-pictures"
-	 :base-directory "~/OneDrive/Writing/Org/Pictures/"
-	 :base-extension ".*"
-	 :publishing-directory "~/emacs-publish/blog-en/Pictures/"
-	 :publishing-function org-publish-attachment
-	 :recursive t)))
+
