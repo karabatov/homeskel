@@ -76,22 +76,16 @@
 (global-set-key [f9] 'org-toggle-inline-images)
 
 ;; English-language blog
+(load-file "blog.el")
 (setq org-publish-project-alist
       `(("blog-en"
 	 :components ("blog-articles", "blog-pictures"))
 	("blog-articles"
 	 :base-directory "~/OneDrive/Writing/Org/"
-	 :base-extension "org"
 	 :exclude ".*"
-	 :include ("good-math.org"
-		   "principles.org"
-		   "reading-math.org"
-		   "designing-meal-size-icons.org"
-		   "ux-design-for-mobile.org"
-		   "a-case-for-a-new-blog-engine.org"
-		   "not-so-fast-on-the-app-store.org"
-		   "hayaku-tap-slide-control.org"
-		   "design-considerations-for-not-so-fast.org")
+	 :include ,(blog-publish-list-files
+		   "~/OneDrive/Writing/Org/"
+		   "blog_en_publish")
 	 :publishing-directory "~/emacs-publish/blog-en/"
 	 :publishing-function org-html-publish-to-html
 	 :auto-sitemap t
