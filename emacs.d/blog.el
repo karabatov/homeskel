@@ -35,11 +35,18 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
             (split-string (match-string 1))
 	  )))))
 
+(setf org-export-html-coding-system 'utf-8-unix)
+(setf my-head-extra
+      (concat
+       "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+       "<link rel='stylesheet' href='./static/main.css' />"
+       ))
+
 (setq blog-publish-base-directory "~/OneDrive/Writing/Org/")
 (setq blog-publish-export-directory "~/emacs-publish/")
 (setq org-publish-project-alist
       `(("blog-en"
-	 :components ("blog-articles", "blog-pictures"))
+	 :components ("blog-articles", "blog-pictures", "blog-static"))
 	("blog-articles"
 	 :base-directory ,blog-publish-base-directory
 	 :exclude ".*"
@@ -52,10 +59,23 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
 	 :section-numbers nil ;; Don't put numbers on headings
 	 :with-title nil ;; Don't put title in the output
 	 :with-toc nil ;; Don't output TOC
+	 :with-author t
+	 :with-creator nil
 
 	 ;; HTML
 	 :publishing-function org-html-publish-to-html
 	 :html-postamble ,(lambda (lang) "<p>§ org-publish-project</p>")
+	 :html-link-home "/"
+	 :html-head-include-default-style nil
+	 :html-head-include-scripts nil
+	 :html-head-extra ,my-head-extra
+	 :html-home/up-format ""
+	 :html-link-up ""
+	 :html-metadata-timestamp-format "%d %B %Y"
+	 :html-preamble ,(concat
+			 "<header><h2>%a</h2><h3><time>%d</time></h3></header>"
+			 "<ul class=\"links\">"
+			 "</ul>")
 
 	 ;; Sitemap
 	 :auto-sitemap t
@@ -66,5 +86,11 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
 	 :base-directory ,(concat blog-publish-base-directory "Pictures/")
 	 :base-extension ".*"
 	 :publishing-directory ,(concat blog-publish-export-directory "blog/en/Pictures/")
+	 :publishing-function org-publish-attachment
+	 :recursive t)
+	("blog-static"
+	 :base-directory ,(concat blog-publish-base-directory "static/")
+	 :base-extension ".*"
+	 :publishing-directory ,(concat blog-publish-export-directory "blog/en/static/")
 	 :publishing-function org-publish-attachment
 	 :recursive t)))
