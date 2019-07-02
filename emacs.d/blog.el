@@ -4,6 +4,7 @@
 (defun blog-publish-blog (project-name)
   "Publishes PROJECT-NAME forcefully."
   (interactive "MProject name: ")
+  (blog-publish-setq-project-alist)
   (org-publish-project project-name t))
 
 (defun blog-publish-list-files (directory publish-tag)
@@ -44,10 +45,10 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
 (defun my-sitemap-entry (entry style project)
   "Custom formatting function for the sitemap entry.
 Takes ENTRY name, sitemap STYLE and PROJECT."
-  (format "%s [[file:%s][%s]]"
-	  (format-time-string "%d %B %Y" (org-publish-find-date entry project))
+  (format "[[file:%s][%s]] (%s)"
 	  entry
-	  (org-publish-find-title entry project)))
+	  (org-publish-find-title entry project)
+	  (format-time-string "%d %B %Y" (org-publish-find-date entry project))))
 
 (defun my-sitemap-function (title list)
   "Default site map, as a string.
@@ -60,65 +61,69 @@ representation for the files to include, as returned by
 
 (setq blog-publish-base-directory "~/OneDrive/Writing/Org/")
 (setq blog-publish-export-directory "~/emacs-publish/")
-(setq org-publish-project-alist
-      `(("blog-en"
-	 :components ("blog-articles", "blog-pictures", "blog-static"))
-	("blog-articles"
-	 :base-directory ,blog-publish-base-directory
-	 :exclude ".*"
-	 :include ,(blog-publish-list-files
-		   blog-publish-base-directory
-		   "blog_en_publish")
-	 :publishing-directory ,(concat blog-publish-export-directory "blog/en/")
 
-	 ;; Formatting
-	 :section-numbers nil ;; Don't put numbers on headings
-	 :with-title nil ;; Don't put title in the output
-	 :with-toc nil ;; Don't output TOC
-	 :with-author t
-	 :with-creator nil
-	 :with-tags nil
+(defun blog-publish-setq-project-alist ()
+    "Reset 'org-publish-project-alist' to include new files."
+  (setq org-publish-project-alist
+	`(("blog-en"
+	   :components ("blog-articles", "blog-pictures", "blog-static"))
+	  ("blog-articles"
+	   :base-directory ,blog-publish-base-directory
+	   :exclude ".*"
+	   :include ,(blog-publish-list-files
+		      blog-publish-base-directory
+		      "blog_en_publish")
+	   :publishing-directory ,(concat blog-publish-export-directory "blog/en/")
 
-	 ;; HTML
-	 :publishing-function org-html-publish-to-html
-	 :html-postamble ,(lambda (lang) "<p>∴</p>")
-	 :html-link-home "/"
-	 :html-head-include-default-style nil
-	 :html-head-include-scripts nil
-	 :html-head-extra ,my-head-extra
-	 :html-home/up-format ""
-	 :html-link-up ""
-	 :html-metadata-timestamp-format "%d %B %Y"
-	 :html-preamble ,(concat
-			 "<header>"
-			 "<img src=\"./static/sagrada.jpg\" />"
-			 "<h2><a href=\"./index.html\">%a</a></h2>"
-			 "<h3><time>%d</time></h3>"
-			 "</header><br />"
-			 "<p class=\"flag\">Observations, stories, projects, photos. 
+	   ;; Formatting
+	   :section-numbers nil ;; Don't put numbers on headings
+	   :with-title nil ;; Don't put title in the output
+	   :with-toc nil ;; Don't output TOC
+	   :with-author t
+	   :with-creator nil
+	   :with-tags nil
+
+	   ;; HTML
+	   :publishing-function org-html-publish-to-html
+	   :html-postamble ,(lambda (lang) "<p>∴</p>")
+	   :html-link-home "/"
+	   :html-head-include-default-style nil
+	   :html-head-include-scripts nil
+	   :html-head-extra ,my-head-extra
+	   :html-home/up-format ""
+	   :html-link-up ""
+	   :html-metadata-timestamp-format "%d %B %Y"
+	   :html-preamble ,(concat
+			    "<header>"
+			    "<img src=\"./static/sagrada.jpg\" />"
+			    "<h2><a href=\"./index.html\">%a</a></h2>"
+			    "<h3><time>%d</time></h3>"
+			    "</header><br />"
+			    "<p class=\"flag\">Observations, stories, projects, photos. 
 In&nbsp;English and&nbsp;<a href=\"../ru/\">Russian</a>.</p>"
-			 "<h5>Projects</h5>"
-			 "<ul class=\"links\">"
-			 "<li><a href=\"https://notsofastapp.com\">Not So Fast</a></li>"
-			 "</ul>")
+			    "<h5>Projects</h5>"
+			    "<ul class=\"links\">"
+			    "<li><a href=\"https://notsofastapp.com\">Not So Fast</a></li>"
+			    "</ul>")
 
-	 ;; Sitemap
-	 :auto-sitemap t
-	 :sitemap-style list
-	 :sitemap-filename "index.org"
-	 :sitemap-function my-sitemap-function
-	 :sitemap-format-entry my-sitemap-entry
-	 :sitemap-title "Yuri Karabatov"
-	 :sitemap-sort-files anti-chronologically)
-	("blog-pictures"
-	 :base-directory ,(concat blog-publish-base-directory "Pictures/")
-	 :base-extension ".*"
-	 :publishing-directory ,(concat blog-publish-export-directory "blog/en/Pictures/")
-	 :publishing-function org-publish-attachment
-	 :recursive t)
-	("blog-static"
-	 :base-directory ,(concat blog-publish-base-directory "static/")
-	 :base-extension ".*"
-	 :publishing-directory ,(concat blog-publish-export-directory "blog/en/static/")
-	 :publishing-function org-publish-attachment
-	 :recursive t)))
+	   ;; Sitemap
+	   :auto-sitemap t
+	   :sitemap-style list
+	   :sitemap-filename "index.org"
+	   :sitemap-function my-sitemap-function
+	   :sitemap-format-entry my-sitemap-entry
+	   :sitemap-title "Yuri Karabatov"
+	   :sitemap-sort-files anti-chronologically)
+	  ("blog-pictures"
+	   :base-directory ,(concat blog-publish-base-directory "Pictures/")
+	   :base-extension ".*"
+	   :publishing-directory ,(concat blog-publish-export-directory "blog/en/Pictures/")
+	   :publishing-function org-publish-attachment
+	   :recursive t)
+	  ("blog-static"
+	   :base-directory ,(concat blog-publish-base-directory "static/")
+	   :base-extension ".*"
+	   :publishing-directory ,(concat blog-publish-export-directory "blog/en/static/")
+	   :publishing-function org-publish-attachment
+	   :recursive t)))
+  )
