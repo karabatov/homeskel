@@ -41,6 +41,22 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
        "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
        "<link rel='stylesheet' href='./static/main.css' />"
        ))
+(defun my-sitemap-entry (entry style project)
+  "Custom formatting function for the sitemap entry.
+Takes ENTRY name, sitemap STYLE and PROJECT."
+  (format "%s [[file:%s][%s]]"
+	  (format-time-string "%d %B %Y" (org-publish-find-date entry project))
+	  entry
+	  (org-publish-find-title entry project)))
+
+(defun my-sitemap-function (title list)
+  "Default site map, as a string.
+TITLE is the the title of the site map.  LIST is an internal
+representation for the files to include, as returned by
+`org-list-to-lisp'.  PROJECT is the current project."
+  (concat "#+TITLE: " title "\n\n"
+	  "* All posts\n"
+	  (org-list-to-org list)))
 
 (setq blog-publish-base-directory "~/OneDrive/Writing/Org/")
 (setq blog-publish-export-directory "~/emacs-publish/")
@@ -61,10 +77,11 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
 	 :with-toc nil ;; Don't output TOC
 	 :with-author t
 	 :with-creator nil
+	 :with-tags nil
 
 	 ;; HTML
 	 :publishing-function org-html-publish-to-html
-	 :html-postamble ,(lambda (lang) "<p>§ org-publish-project</p>")
+	 :html-postamble ,(lambda (lang) "<p>∴</p>")
 	 :html-link-home "/"
 	 :html-head-include-default-style nil
 	 :html-head-include-scripts nil
@@ -73,13 +90,24 @@ that include PUBLISH-TAG in the `#+FILETAGS:` property."
 	 :html-link-up ""
 	 :html-metadata-timestamp-format "%d %B %Y"
 	 :html-preamble ,(concat
-			 "<header><h2>%a</h2><h3><time>%d</time></h3></header>"
+			 "<header>"
+			 "<img src=\"./static/sagrada.jpg\" />"
+			 "<h2><a href=\"./index.html\">%a</a></h2>"
+			 "<h3><time>%d</time></h3>"
+			 "</header><br />"
+			 "<p class=\"flag\">Observations, stories, projects, photos. 
+In&nbsp;English and&nbsp;<a href=\"../ru/\">Russian</a>.</p>"
+			 "<h5>Projects</h5>"
 			 "<ul class=\"links\">"
+			 "<li><a href=\"https://notsofastapp.com\">Not So Fast</a></li>"
 			 "</ul>")
 
 	 ;; Sitemap
 	 :auto-sitemap t
+	 :sitemap-style list
 	 :sitemap-filename "index.org"
+	 :sitemap-function my-sitemap-function
+	 :sitemap-format-entry my-sitemap-entry
 	 :sitemap-title "Yuri Karabatov"
 	 :sitemap-sort-files anti-chronologically)
 	("blog-pictures"
