@@ -22,7 +22,7 @@
  '(indicate-empty-lines t)
  '(package-selected-packages
    (quote
-    (olivetti reveal-in-osx-finder deft magit labburn-theme)))
+    (markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme)))
  '(show-paren-mode t)
  '(visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow))))
 (custom-set-faces
