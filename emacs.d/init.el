@@ -33,6 +33,9 @@
  '(default ((t (:height 160 :family "Hack"))))
  '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan")))))
 
+;; Always use spaces for indentation.
+(setq-default indent-tabs-mode nil)
+
 ;; Sort apropos results by relevancy.
 (setq apropos-sort-by-scores t)
 
