@@ -31,7 +31,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:height 180 :family "Hack"))))
- '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan")))))
+ '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan"))))
+ '(markdown-code-face ((t (:inherit nil))))
+ '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
 
 ;; Always use spaces for indentation.
 (setq-default indent-tabs-mode nil)
@@ -109,6 +111,12 @@
 
 ;; Highlight current line
 (global-hl-line-mode t)
+
+;; Insert …
+(defun insert-multiple-dots ()
+  (interactive)
+  (insert "…"))
+(global-set-key (kbd "C-x 8 :") 'insert-multiple-dots)
 
 ;; Blog
 (load "~/.emacs.d/blog.el")
