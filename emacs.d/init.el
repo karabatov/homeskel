@@ -107,6 +107,9 @@
 
 (global-set-key (kbd "C-x |") 'toggle-window-split)
 
+;; Highlight current line
+(global-hl-line-mode t)
+
 ;; Blog
 (load "~/.emacs.d/blog.el")
 
