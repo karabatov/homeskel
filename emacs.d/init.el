@@ -30,7 +30,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 160 :family "Hack"))))
+ '(default ((t (:height 180 :family "Hack"))))
  '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan")))))
 
 ;; Always use spaces for indentation.
