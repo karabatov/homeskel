@@ -20,6 +20,7 @@
  '(ido-enable-flex-matching t)
  '(ido-mode (quote both) nil (ido))
  '(indicate-empty-lines t)
+ '(olivetti-body-width 100)
  '(package-selected-packages
    (quote
     (markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme)))
@@ -30,7 +31,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:height 180 :family "Hack"))))
+ '(default ((t (:weight normal :height 180 :family "Hack"))))
  '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan"))))
  '(markdown-code-face ((t (:inherit nil))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
