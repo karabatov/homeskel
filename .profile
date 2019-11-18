@@ -82,3 +82,6 @@ ulimit -n 4096
 
 # Display sleep
 alias displaysleep="pmset displaysleepnow"
+
+# Project
+alias switch_branch="cd .. && cd babylon-ios && bundle install && bundle exec pod install && git status"
