@@ -85,3 +85,6 @@ alias displaysleep="pmset displaysleepnow"
 
 # Project
 alias switch_branch="cd .. && cd babylon-ios && bundle install && bundle exec pod install && git status"
+
+# Nim
+export PATH=~/.nimble/bin:$PATH
