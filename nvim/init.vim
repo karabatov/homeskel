@@ -6,18 +6,18 @@ language C
 call plug#begin('~/.config/nvim/plugged')
 Plug 'neomake/neomake'
 Plug 'cloudhead/neovim-fuzzy'
-Plug 'freitass/todo.txt-vim'
+" Plug 'freitass/todo.txt-vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'kien/rainbow_parentheses.vim'
 
 " Go
-Plug 'junegunn/goyo.vim'
-Plug 'fatih/vim-go'
+" Plug 'junegunn/goyo.vim'
+" Plug 'fatih/vim-go'
 
 " Clojure
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-clojure-static'
-Plug 'venantius/vim-cljfmt'
+" Plug 'tpope/vim-fireplace'
+" Plug 'guns/vim-clojure-static'
+" Plug 'venantius/vim-cljfmt'
 call plug#end()
 
 " Syntax highlighting
