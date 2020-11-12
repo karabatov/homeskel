@@ -7,11 +7,15 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neomake/neomake'
 Plug 'cloudhead/neovim-fuzzy'
 " Plug 'freitass/todo.txt-vim'
+Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'junegunn/goyo.vim'
+
+" Git
+Plug 'tpope/vim-fugitive'
 
 " Go
-" Plug 'junegunn/goyo.vim'
 " Plug 'fatih/vim-go'
 
 " Clojure
@@ -92,6 +96,7 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 " Line wrapping
+set nolinebreak
 set wrap
 set textwidth=79
 set formatoptions=qrn1
@@ -116,6 +121,7 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
 vnoremap <leader>p "+p
+vmap <C-c> y:call system("xclip -i -selection clipboard", getreg("\""))<CR>:call system("xclip -i", getreg("\""))<CR>
 
 " Save
 nnoremap <C-s> :w<CR>
@@ -148,7 +154,15 @@ nnoremap <leader>rv :so $MYVIMRC<CR>
  augroup END
 
 " Open a new vertical split
-nnoremap <leader>w <C-w>v<C-w>l
+" nnoremap <leader>w <C-w>v<C-w>l
+
+" window keys
+nnoremap <Leader>wh :new<CR>
+nnoremap <Leader>wv :vnew<CR>
+nnoremap <Leader>wH :split<CR>
+nnoremap <Leader>wV :vsplit<CR>
+nnoremap <Leader>wn :wincmd w<CR>
+nnoremap <Leader>wc :close<CR>
 
 " Move across splits
 nnoremap <C-h> <C-w>h
@@ -165,6 +179,9 @@ au CursorHold,BufWinEnter * checktime
 
 " Relative line numbers
 set relativenumber
+
+" filetype
+filetype plugin on
 
 " C filetype
 augroup project
@@ -190,6 +207,15 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " fzy
 nnoremap <C-p> :FuzzyOpen<CR>
+nnoremap <leader>fg :FuzzyGrep<Space>
 
 " Russian
 :set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz,[!"№%:,.;()_+[]\;',./{}||:"<>?;~!@#$%^&*()_+[]\;',./{}|:"<>?
+
+" Markdown
+au! BufRead,BufNewFile *.md set filetype=markdown formatoptions-=t
+set conceallevel=2
+let g:vim_markdown_autowrite = 1
+
+" Word count
+nnoremap <leader>cw :w !wc -w<CR>
