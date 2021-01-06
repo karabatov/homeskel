@@ -7,3 +7,7 @@ highrise.sh
 .vim/.netrwhist
 nvim/.netrwhist
 nvim/plugged
+emacs.d/auto-save-list/
+emacs.d/elpa/
+emacs.d/server/
+emacs.d/transient/

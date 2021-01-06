@@ -10,31 +10,38 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (labburn)))
+ '(custom-enabled-themes '(labburn))
  '(custom-safe-themes
-   (quote
-    ("80ae3a89f1eca6fb94a525004f66b544e347c6f756aaafb728c7cdaef85ea1f5" default)))
+   '("da53c5d117ebada2664048682a345935caf8e54094a58febd5f021462ef20ba2" "80ae3a89f1eca6fb94a525004f66b544e347c6f756aaafb728c7cdaef85ea1f5" default))
  '(display-line-numbers-type nil)
  '(fringe-mode nil nil (fringe))
  '(global-visual-line-mode t)
  '(ido-enable-flex-matching t)
- '(ido-mode (quote both) nil (ido))
+ '(ido-mode 'both nil (ido))
  '(indicate-empty-lines t)
  '(olivetti-body-width 100)
  '(package-selected-packages
-   (quote
-    (markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme)))
+   '(markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme))
  '(show-paren-mode t)
- '(visual-line-fringe-indicators (quote (left-curly-arrow right-curly-arrow))))
+ '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:weight normal :height 180 :family "Hack"))))
+ '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 158 :width normal))))
  '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan"))))
  '(markdown-code-face ((t (:inherit nil))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
+
+;; utf-8
+(set-terminal-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
 
 ;; Always use spaces for indentation.
 (setq-default indent-tabs-mode nil)
@@ -59,7 +66,7 @@
 (global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
 
 ;; Deft configuration
-(setq deft-directory "~/OneDrive/Writing/Org")
+(setq deft-directory "~/Documents/notes")
 (global-set-key [f8] 'deft)
 (setq deft-use-filename-as-title t)
 (setq deft-use-filter-string-for-filename t)
@@ -67,7 +74,7 @@
                               (nospace . "-")
                               (case-fn . downcase)))
 (global-set-key (kbd "C-x C-g") 'deft-find-file)
-(setq deft-default-extension "org")
+(setq deft-default-extension "md")
 
 ;; reveal-in-osx-finder
 (global-set-key [f10] 'reveal-in-osx-finder)
@@ -80,7 +87,6 @@
 
 ;; org-mode
 (global-set-key [f9] 'org-toggle-inline-images)
-(setq org-agenda-files '("~/OneDrive/Writing/Org/"))
 
 ;; Make a horizontal layout vertical
 (defun toggle-window-split ()
