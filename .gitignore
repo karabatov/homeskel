@@ -9,5 +9,8 @@ nvim/.netrwhist
 nvim/plugged
 emacs.d/auto-save-list/
 emacs.d/elpa/
+emacs.d/url/
 emacs.d/server/
 emacs.d/transient/
+emacs.d/bookmarks
+emacs.d/ido.last
