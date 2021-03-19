@@ -88,3 +88,6 @@ alias switch_branch="cd .. && cd babylon-ios && bundle install && bundle exec po
 
 # Nim
 export PATH=~/.nimble/bin:$PATH
+
+# Go
+export PATH=~/go/bin:$PATH
