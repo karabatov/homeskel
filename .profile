@@ -14,7 +14,7 @@ set output-meta on
 set convert-meta off
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export PATH=/opt/homebrew/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
 
 # Setup Amazon EC2 Command-Line Tools
 # export EC2_HOME=~/.ec2
@@ -65,6 +65,7 @@ export GITHUB_USERNAME="karabatov"
 
 # Bash completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+[ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
@@ -91,3 +92,6 @@ export PATH=~/.nimble/bin:$PATH
 
 # Go
 export PATH=~/go/bin:$PATH
+
+# Homebrew Rosetta
+alias ibrew="arch --x86_64 /usr/local/bin/brew"
