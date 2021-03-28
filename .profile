@@ -14,7 +14,7 @@ set output-meta on
 set convert-meta off
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
-export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
+export PATH=/opt/homebrew/bin:/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/sbin:$PATH
 
 # Setup Amazon EC2 Command-Line Tools
 # export EC2_HOME=~/.ec2
