@@ -67,9 +67,11 @@ export GITHUB_USERNAME="karabatov"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# Ruby
+if [ -d $(brew --prefix)/opt/chruby ]; then
+    source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+    source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+fi
 
 # editor
 export VISUAL="nvim"
@@ -83,9 +85,6 @@ ulimit -n 4096
 
 # Display sleep
 alias displaysleep="pmset displaysleepnow"
-
-# Project
-alias switch_branch="cd .. && cd babylon-ios && bundle install && bundle exec pod install && git status"
 
 # Nim
 export PATH=~/.nimble/bin:$PATH
