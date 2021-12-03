@@ -23,7 +23,7 @@
  '(indicate-empty-lines t)
  '(olivetti-body-width 100)
  '(package-selected-packages
-   '(markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme))
+   '(markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme protobuf-mode slime))
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
@@ -88,6 +88,14 @@
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+;; SLIME
+;; https://common-lisp.net/project/slime/doc/html/Installation.html#Installing-from-Git
+; (add-to-list 'load-path "~/quicklisp/dists/quicklisp/software/slime-v2.26.1/")
+; (require 'slime-autoloads)
+(setq inferior-lisp-program "/opt/homebrew/bin/sbcl")
+(slime-setup '(slime-fancy))
+(global-set-key (kbd "C-c s") 'slime-selector)
 
 ;; org-mode
 ;; (global-set-key [f9] 'org-toggle-inline-images)
