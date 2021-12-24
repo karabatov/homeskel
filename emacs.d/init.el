@@ -93,7 +93,9 @@
 ;; https://common-lisp.net/project/slime/doc/html/Installation.html#Installing-from-Git
 ; (add-to-list 'load-path "~/quicklisp/dists/quicklisp/software/slime-v2.26.1/")
 ; (require 'slime-autoloads)
-(setq inferior-lisp-program "/opt/homebrew/bin/sbcl")
+(if (eq system-type 'windows-nt)
+    (setq inferior-lisp-program "sbcl")
+    (setq inferior-lisp-program "/opt/homebrew/bin/sbcl"))
 (slime-setup '(slime-fancy))
 (global-set-key (kbd "C-c s") 'slime-selector)
 
