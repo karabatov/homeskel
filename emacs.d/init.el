@@ -23,7 +23,7 @@
  '(indicate-empty-lines t)
  '(olivetti-body-width 100)
  '(package-selected-packages
-   '(markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme protobuf-mode slime))
+   '(zetteldeft markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme protobuf-mode slime))
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
@@ -76,9 +76,24 @@
 (global-set-key [f8] 'deft)
 (setq deft-use-filename-as-title t)
 (setq deft-use-filter-string-for-filename t)
+(setq deft-extensions '("md"))
 ;; (global-set-key (kbd "C-x C-g") 'deft-find-file)
 (setq deft-default-extension "md")
 (setq deft-new-file-format "%Y%m%d%H%M")
+
+;; Zetteldeft configuration
+(zetteldeft-set-classic-keybindings)
+(setq zetteldeft-id-format "%Y%m%d%H%M")
+(setq zetteldeft-id-regex "[0-9]\\{12\\}")
+(setq zetteldeft-link-indicator "§")
+(setq zetteldeft-link-suffix "")
+(setq zetteldeft-home-id "202201031224")
+(setq zetteldeft-title-prefix "# ")
+(setq zetteldeft-title-suffix "")
+(font-lock-add-keywords 'markdown-mode
+   `((,zetteldeft-id-regex
+      . font-lock-warning-face)))
+(global-set-key (kbd "C-c d w") 'zetteldeft-copy-id-current-file)
 
 ;; reveal-in-osx-finder
 (global-set-key [f10] 'reveal-in-osx-finder)
@@ -151,7 +166,7 @@
   (deft-filter str t)
   (deft))
 ;; (f)ilter) (q)uery
-(global-set-key (kbd "C-, f q") 'yk-filter-query)
+(global-set-key (kbd "C-c d b") 'yk-filter-query)
 
 (defun yk-filter-at-point ()
   "Set Deft filter to tag at point and show Deft."
@@ -170,5 +185,5 @@
 (global-set-key (kbd "C-, i d") 'yk-insert-date)
 
 ;; Blog
-(load "~/.emacs.d/blog.el")
+;; (load "~/.emacs.d/blog.el")
 
