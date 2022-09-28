@@ -23,7 +23,7 @@
  '(indicate-empty-lines t)
  '(olivetti-body-width 100)
  '(package-selected-packages
-   '(zetteldeft markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme protobuf-mode slime))
+   '(zetteldeft markdown-mode olivetti reveal-in-osx-finder deft magit labburn-theme protobuf-mode slime vertico orderless))
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow)))
@@ -36,6 +36,11 @@
  '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan"))))
  '(markdown-code-face ((t (:inherit nil))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
 
 ;; utf-8
 (set-terminal-coding-system 'utf-8)
@@ -60,7 +65,7 @@
 
 ;; Temporary save files
 (setq backup-by-copying t      ; don't clobber symlinks
-      backup-directory-alist '(("." . "~/.emacs-saves"))    ; don't litter my fs tree
+      backup-directory-alist '(("~/.emacs-saves" . "."))    ; don't litter my fs tree
       delete-old-versions t)
 (setq auto-save-file-name-transforms
       `((".*" "~/.emacs-saves/" t)))
@@ -156,6 +161,47 @@
   (interactive)
   (insert "…"))
 (global-set-key (kbd "C-x 8 :") 'insert-multiple-dots)
+
+;; Enable vertico
+(use-package vertico
+  :init
+  (vertico-mode)
+
+  ;; Different scroll margin
+  ;; (setq vertico-scroll-margin 0)
+
+  ;; Show more candidates
+  ;; (setq vertico-count 20)
+
+  ;; Grow and shrink the Vertico minibuffer
+  ;; (setq vertico-resize t)
+
+  ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
+  ;; (setq vertico-cycle t)
+  )
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; Optionally use the `orderless' completion style.
+(use-package orderless
+  :init
+  ;; Configure a custom style dispatcher (see the Consult wiki)
+  ;; (setq orderless-style-dispatchers '(+orderless-dispatch)
+  ;;       orderless-component-separator #'orderless-escapable-split-on-space)
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+;; Do not allow the cursor in the minibuffer prompt
+(setq minibuffer-prompt-properties
+      '(read-only t cursor-intangible t face minibuffer-prompt))
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+;; Enable recursive minibuffers
+(setq enable-recursive-minibuffers t)
 
 ;; Notes
 
