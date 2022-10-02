@@ -64,11 +64,12 @@
 (windmove-default-keybindings)
 
 ;; Temporary save files
+(defvar my-auto-save-dir "~/.emacs-saves/")
 (setq backup-by-copying t      ; don't clobber symlinks
-      backup-directory-alist '(("~/.emacs-saves" . "."))    ; don't litter my fs tree
+      backup-directory-alist '(("." . ,my-auto-save-dir))    ; don't litter my fs tree
       delete-old-versions t)
-(setq auto-save-file-name-transforms
-      `((".*" "~/.emacs-saves/" t)))
+(setq auto-save-file-name-transforms `((".*" ,my-auto-save-dir t)))
+
 
 ;; Shrink and enlarge windows
 (global-set-key (kbd "C-S-<down>") 'enlarge-window)
