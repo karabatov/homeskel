@@ -94,3 +94,6 @@ export PATH=~/go/bin:$PATH
 
 # Homebrew Rosetta
 alias ibrew="arch --x86_64 /usr/local/bin/brew"
+
+# Rust
+export PATH=~/.cargo/bin:$PATH
