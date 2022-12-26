@@ -15,12 +15,16 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; Theme
+;; Theme.
 (use-package labburn-theme
   :ensure
   :config
   (load-theme 'labburn t)
   (set-face-attribute 'fringe t :background "#3f3f3f" :foreground "dark cyan"))
+
+;; Olivetti mode: full-screen, no-distraction editing with limited text width.
+(use-package olivetti
+  :custom (olivetti-body-width 100))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -34,7 +38,6 @@
  '(ido-everywhere t)
  '(ido-mode 'both nil (ido))
  '(indicate-empty-lines t)
- '(olivetti-body-width 100)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
  '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
@@ -51,7 +54,6 @@
 (setq package-selected-packages
       '(zetteldeft
         markdown-mode
-        olivetti
         reveal-in-osx-finder
         deft
         magit
