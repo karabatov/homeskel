@@ -78,12 +78,6 @@
 ;; Sort apropos results by relevancy.
 (setq apropos-sort-by-scores t)
 
-;; A simpler binding for C-x o to switch between windows.
-(global-set-key (kbd "M-o") 'other-window)
-
-;; windmove (S-dir to move between windows)
-(windmove-default-keybindings)
-
 ;; Temporary save files
 (setq backup-by-copying t      ; don't clobber symlinks
       backup-directory-alist '((".*" . "~/.emacs-saves/"))    ; don't litter my fs tree
@@ -91,78 +85,12 @@
 (setq auto-save-file-name-transforms '((".*" "~/.emacs-saves/\\1" t)))
 (make-directory "~/.emacs-saves/" t)
 
-;; Shrink and enlarge windows
-(global-set-key (kbd "C-S-<down>") 'enlarge-window)
-(global-set-key (kbd "C-S-<up>") 'shrink-window)
-(global-set-key (kbd "C-S-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
-
-;; Deft configuration
-(use-package deft
-  :bind ([f8] . 'deft)
-  :custom
-  (deft-directory "~/Documents/notes")
-  (deft-use-filename-as-title t)
-  (deft-use-filter-string-for-filename t)
-  (deft-extensions '("md"))
-  (deft-default-extension "md")
-  (deft-new-file-format "%Y%m%d%H%M"))
-
-;; Zetteldeft configuration
-(use-package zetteldeft
-  :init
-  (zetteldeft-set-classic-keybindings)
-  :custom
-  (zetteldeft-id-format "%Y%m%d%H%M")
-  (zetteldeft-id-regex "[0-9]\\{12\\}")
-  (zetteldeft-link-indicator "§")
-  (zetteldeft-link-suffix "")
-  (zetteldeft-home-id "202201031224")
-  (zetteldeft-title-prefix "# ")
-  (zetteldeft-title-suffix "")
-  :config
-  (font-lock-add-keywords 'markdown-mode
-                          `((,zetteldeft-id-regex . font-lock-warning-face)))
-  :bind
-  ("C-c d w" . 'zetteldeft-copy-id-current-file))
-
 (use-package magit
   :bind ("C-x g" . 'magit-status))
 
 (use-package which-key
   :init
   (which-key-mode))
-
-;; org-mode
-;; (global-set-key [f9] 'org-toggle-inline-images)
-
-;; Make a horizontal layout vertical
-(defun toggle-window-split ()
-  (interactive)
-  (if (= (count-windows) 2)
-      (let* ((this-win-buffer (window-buffer))
-         (next-win-buffer (window-buffer (next-window)))
-         (this-win-edges (window-edges (selected-window)))
-         (next-win-edges (window-edges (next-window)))
-         (this-win-2nd (not (and (<= (car this-win-edges)
-                     (car next-win-edges))
-                     (<= (cadr this-win-edges)
-                     (cadr next-win-edges)))))
-         (splitter
-          (if (= (car this-win-edges)
-             (car (window-edges (next-window))))
-          'split-window-horizontally
-        'split-window-vertically)))
-    (delete-other-windows)
-    (let ((first-win (selected-window)))
-      (funcall splitter)
-      (if this-win-2nd (other-window 1))
-      (set-window-buffer (selected-window) this-win-buffer)
-      (set-window-buffer (next-window) next-win-buffer)
-      (select-window first-win)
-      (if this-win-2nd (other-window 1))))))
-
-(global-set-key (kbd "C-x |") 'toggle-window-split)
 
 ;; Highlight current line
 (global-hl-line-mode t)
@@ -344,6 +272,9 @@
 
 ;; Enable recursive minibuffers
 (setq enable-recursive-minibuffers t)
+
+;; Emacs windows and frames
+(load (expand-file-name "windows.el" user-emacs-directory))
 
 ;; Notes
 (load (expand-file-name "notes.el" user-emacs-directory))

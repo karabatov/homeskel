@@ -1,5 +1,34 @@
 ;; Notes
 
+;; Deft configuration
+(use-package deft
+  :bind ([f8] . 'deft)
+  :custom
+  (deft-directory "~/Documents/notes")
+  (deft-use-filename-as-title t)
+  (deft-use-filter-string-for-filename t)
+  (deft-extensions '("md"))
+  (deft-default-extension "md")
+  (deft-new-file-format "%Y%m%d%H%M"))
+
+;; Zetteldeft configuration
+(use-package zetteldeft
+  :init
+  (zetteldeft-set-classic-keybindings)
+  :custom
+  (zetteldeft-id-format "%Y%m%d%H%M")
+  (zetteldeft-id-regex "[0-9]\\{12\\}")
+  (zetteldeft-link-indicator "§")
+  (zetteldeft-link-suffix "")
+  (zetteldeft-home-id "202201031224")
+  (zetteldeft-title-prefix "# ")
+  (zetteldeft-title-suffix "")
+  :config
+  (font-lock-add-keywords 'markdown-mode
+                          `((,zetteldeft-id-regex . font-lock-warning-face)))
+  :bind
+  ("C-c d w" . 'zetteldeft-copy-id-current-file))
+
 (defun yk-filter-query (str)
   "Ask and apply filter and show Deft."
   (interactive
