@@ -15,10 +15,12 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; labburn theme
+;; Theme
 (use-package labburn-theme
   :ensure
-  :config (load-theme 'labburn t))
+  :config
+  (load-theme 'labburn t)
+  (set-face-attribute 'fringe t :background "#3f3f3f" :foreground "dark cyan"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -43,7 +45,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 181 :width normal))))
- '(fringe ((t (:background "#3f3f3f" :foreground "dark cyan"))))
  '(markdown-code-face ((t (:inherit nil))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
 
@@ -365,31 +366,7 @@
 (setq enable-recursive-minibuffers t)
 
 ;; Notes
-
-(defun yk-filter-query (str)
-  "Ask and apply filter and show Deft."
-  (interactive
-   (list (read-from-minibuffer "Search: ")))
-  (deft-filter str t)
-  (deft))
-;; (f)ilter) (q)uery
-(global-set-key (kbd "C-c d b") 'yk-filter-query)
-
-(defun yk-filter-at-point ()
-  "Set Deft filter to tag at point and show Deft."
-  (interactive)
-  ;; A tag is most like a 'filename.
-  (deft-filter (thing-at-point 'filename 'no-properties) t)
-  (deft))
-;; (f)ilter (p)oint
-(global-set-key (kbd "C-, f p") 'yk-filter-at-point)
-
-(defun yk-insert-date ()
-  "Insert current date in ZK format."
-  (interactive)
-  (insert (format-time-string "%Y%m%d%H%M")))
-;; (i)nsert (d)ate
-(global-set-key (kbd "C-, i d") 'yk-insert-date)
+(load (expand-file-name "notes.el" user-emacs-directory))
 
 ;; Blog
 ;; (load "~/.emacs.d/blog.el")
