@@ -53,6 +53,9 @@
         slime
         vertico
         consult
+        avy
+        marginalia
+        which-key
         orderless))
 
 ;; When typing, replace the selected text.
@@ -66,6 +69,12 @@
 (setq locale-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
+
+(use-package avy
+  :init
+  (avy-setup-default)
+  (global-set-key (kbd "C-c C-j") 'avy-resume)
+  )
 
 ;; Always use spaces for indentation.
 (setq-default indent-tabs-mode nil)
@@ -125,6 +134,10 @@
 
 ;; Magit
 (global-set-key (kbd "C-x g") 'magit-status)
+
+(use-package which-key
+  :init
+  (which-key-mode))
 
 ;; SLIME
 ;; https://common-lisp.net/project/slime/doc/html/Installation.html#Installing-from-Git
@@ -324,7 +337,21 @@
   ;; (setq consult-project-function (lambda (_) (vc-root-dir)))
   ;;;; 4. locate-dominating-file
   ;; (setq consult-project-function (lambda (_) (locate-dominating-file "." ".git")))
-)
+  )
+
+;; Enable rich annotations using the Marginalia package
+(use-package marginalia
+  ;; Either bind `marginalia-cycle' globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+
+  ;; The :init configuration is always executed (Not lazy!)
+  :init
+
+  ;; Must be in the :init section of use-package such that the mode gets
+  ;; enabled right away. Note that this forces loading the package.
+  (marginalia-mode))
 
 ;; Do not allow the cursor in the minibuffer prompt
 (setq minibuffer-prompt-properties
