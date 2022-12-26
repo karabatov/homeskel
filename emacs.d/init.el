@@ -1,20 +1,30 @@
 ;; -*- lexical-binding: t -*-
 
-(require 'package) ;; You might already have this line
+;; Set up package repos.
+(require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
 (when (< emacs-major-version 24)
 ;; For important compatibility libraries like cl-lib
      (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize) ;; You might already have this line
+(package-initialize)
+
+;; Install use-package for configuration management.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(require 'use-package)
+
+;; labburn theme
+(use-package labburn-theme
+  :ensure
+  :config (load-theme 'labburn t))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes '(labburn))
- '(custom-safe-themes
-   '("da53c5d117ebada2664048682a345935caf8e54094a58febd5f021462ef20ba2" "80ae3a89f1eca6fb94a525004f66b544e347c6f756aaafb728c7cdaef85ea1f5" default))
  '(display-line-numbers-type nil)
  '(fringe-mode nil nil (fringe))
  '(global-visual-line-mode t)
@@ -37,11 +47,6 @@
  '(markdown-code-face ((t (:inherit nil))))
  '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-(require 'use-package)
-
 (setq package-selected-packages
       '(zetteldeft
         markdown-mode
@@ -49,12 +54,10 @@
         reveal-in-osx-finder
         deft
         magit
-        labburn-theme
         slime
         vertico
         consult
         avy
-        marginalia
         which-key
         orderless))
 
