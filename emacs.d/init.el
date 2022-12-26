@@ -17,14 +17,23 @@
 
 ;; Theme.
 (use-package labburn-theme
-  :ensure
-  :config
+  :init
   (load-theme 'labburn t)
   (set-face-attribute 'fringe t :background "#3f3f3f" :foreground "dark cyan"))
 
 ;; Olivetti mode: full-screen, no-distraction editing with limited text width.
 (use-package olivetti
-  :custom (olivetti-body-width 100))
+  :custom (olivetti-body-width 100)
+  :bind ("C-c o" . 'olivetti-mode))
+
+(use-package markdown-mode
+  :config
+  (set-face-attribute 'markdown-code-face t :inherit nil)
+  (set-face-attribute 'markdown-inline-code-face t :inherit font-lock-constant-face))
+
+(use-package reveal-in-osx-finder
+  :if (eq system-type 'darwin)
+  :bind ([f10] . 'reveal-in-osx-finder))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -34,9 +43,6 @@
  '(display-line-numbers-type nil)
  '(fringe-mode nil nil (fringe))
  '(global-visual-line-mode t)
- '(ido-enable-flex-matching t)
- '(ido-everywhere t)
- '(ido-mode 'both nil (ido))
  '(indicate-empty-lines t)
  '(sentence-end-double-space nil)
  '(show-paren-mode t)
@@ -47,22 +53,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 181 :width normal))))
- '(markdown-code-face ((t (:inherit nil))))
- '(markdown-inline-code-face ((t (:inherit font-lock-constant-face)))))
-
-(setq package-selected-packages
-      '(zetteldeft
-        markdown-mode
-        reveal-in-osx-finder
-        deft
-        magit
-        slime
-        vertico
-        consult
-        avy
-        which-key
-        orderless))
+ '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 181 :width normal)))))
 
 ;; When typing, replace the selected text.
 (setq delete-selection-mode t)
@@ -77,10 +68,9 @@
 (set-terminal-coding-system 'utf-8)
 
 (use-package avy
-  :init
+  :config
   (avy-setup-default)
-  (global-set-key (kbd "C-c C-j") 'avy-resume)
-  )
+  :bind ("C-c C-j" . 'avy-resume))
 
 ;; Always use spaces for indentation.
 (setq-default indent-tabs-mode nil)
@@ -101,7 +91,6 @@
 (setq auto-save-file-name-transforms '((".*" "~/.emacs-saves/\\1" t)))
 (make-directory "~/.emacs-saves/" t)
 
-
 ;; Shrink and enlarge windows
 (global-set-key (kbd "C-S-<down>") 'enlarge-window)
 (global-set-key (kbd "C-S-<up>") 'shrink-window)
@@ -109,51 +98,40 @@
 (global-set-key (kbd "C-S-<left>") 'shrink-window-horizontally)
 
 ;; Deft configuration
-(setq deft-directory "~/Documents/notes")
-(global-set-key [f8] 'deft)
-(setq deft-use-filename-as-title t)
-(setq deft-use-filter-string-for-filename t)
-(setq deft-extensions '("md"))
-;; (global-set-key (kbd "C-x C-g") 'deft-find-file)
-(setq deft-default-extension "md")
-(setq deft-new-file-format "%Y%m%d%H%M")
+(use-package deft
+  :bind ([f8] . 'deft)
+  :custom
+  (deft-directory "~/Documents/notes")
+  (deft-use-filename-as-title t)
+  (deft-use-filter-string-for-filename t)
+  (deft-extensions '("md"))
+  (deft-default-extension "md")
+  (deft-new-file-format "%Y%m%d%H%M"))
 
 ;; Zetteldeft configuration
-(zetteldeft-set-classic-keybindings)
-(setq zetteldeft-id-format "%Y%m%d%H%M")
-(setq zetteldeft-id-regex "[0-9]\\{12\\}")
-(setq zetteldeft-link-indicator "§")
-(setq zetteldeft-link-suffix "")
-(setq zetteldeft-home-id "202201031224")
-(setq zetteldeft-title-prefix "# ")
-(setq zetteldeft-title-suffix "")
-(font-lock-add-keywords 'markdown-mode
-   `((,zetteldeft-id-regex
-      . font-lock-warning-face)))
-(global-set-key (kbd "C-c d w") 'zetteldeft-copy-id-current-file)
+(use-package zetteldeft
+  :init
+  (zetteldeft-set-classic-keybindings)
+  :custom
+  (zetteldeft-id-format "%Y%m%d%H%M")
+  (zetteldeft-id-regex "[0-9]\\{12\\}")
+  (zetteldeft-link-indicator "§")
+  (zetteldeft-link-suffix "")
+  (zetteldeft-home-id "202201031224")
+  (zetteldeft-title-prefix "# ")
+  (zetteldeft-title-suffix "")
+  :config
+  (font-lock-add-keywords 'markdown-mode
+                          `((,zetteldeft-id-regex . font-lock-warning-face)))
+  :bind
+  ("C-c d w" . 'zetteldeft-copy-id-current-file))
 
-;; reveal-in-osx-finder
-(global-set-key [f10] 'reveal-in-osx-finder)
-
-;; Olivetti
-(global-set-key (kbd "C-c o") 'olivetti-mode)
-
-;; Magit
-(global-set-key (kbd "C-x g") 'magit-status)
+(use-package magit
+  :bind ("C-x g" . 'magit-status))
 
 (use-package which-key
   :init
   (which-key-mode))
-
-;; SLIME
-;; https://common-lisp.net/project/slime/doc/html/Installation.html#Installing-from-Git
-; (add-to-list 'load-path "~/quicklisp/dists/quicklisp/software/slime-v2.26.1/")
-; (require 'slime-autoloads)
-(if (eq system-type 'windows-nt)
-    (setq inferior-lisp-program "sbcl")
-    (setq inferior-lisp-program "/opt/homebrew/bin/sbcl"))
-(slime-setup '(slime-fancy))
-(global-set-key (kbd "C-c s") 'slime-selector)
 
 ;; org-mode
 ;; (global-set-key [f9] 'org-toggle-inline-images)
@@ -369,6 +347,9 @@
 
 ;; Notes
 (load (expand-file-name "notes.el" user-emacs-directory))
+
+;; SLIME
+(load (expand-file-name "slime.el" user-emacs-directory))
 
 ;; Blog
 ;; (load "~/.emacs.d/blog.el")
