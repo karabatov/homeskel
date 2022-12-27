@@ -15,11 +15,7 @@
   (package-install 'use-package))
 (require 'use-package)
 
-;; Theme.
-(use-package labburn-theme
-  :init
-  (load-theme 'labburn t)
-  (set-face-attribute 'fringe t :background "#3f3f3f" :foreground "dark cyan"))
+(load (expand-file-name "appearance.el" user-emacs-directory))
 
 ;; Olivetti mode: full-screen, no-distraction editing with limited text width.
 (use-package olivetti
@@ -35,25 +31,10 @@
   :if (eq system-type 'darwin)
   :bind ([f10] . 'reveal-in-osx-finder))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(display-line-numbers-type nil)
- '(fringe-mode nil nil (fringe))
- '(global-visual-line-mode t)
- '(indicate-empty-lines t)
- '(sentence-end-double-space nil)
- '(show-paren-mode t)
- '(visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
- '(warning-suppress-log-types '((comp))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Hack" :foundry "outline" :slant normal :weight normal :height 181 :width normal)))))
+;; A single space does not mean the end of a sentence.
+(customize-set-variable 'sentence-end-double-space nil)
+
+(customize-set-variable 'warning-suppress-log-types '((comp)))
 
 ;; When typing, replace the selected text.
 (setq delete-selection-mode t)
