@@ -13,8 +13,7 @@
 
 ;; Zetteldeft configuration
 (use-package zetteldeft
-  :init
-  (zetteldeft-set-classic-keybindings)
+  :after deft
   :custom
   (zetteldeft-id-format "%Y%m%d%H%M")
   (zetteldeft-id-regex "[0-9]\\{12\\}")
@@ -24,6 +23,7 @@
   (zetteldeft-title-prefix "# ")
   (zetteldeft-title-suffix "")
   :config
+  (zetteldeft-set-classic-keybindings)
   (font-lock-add-keywords 'markdown-mode
                           `((,zetteldeft-id-regex . font-lock-warning-face)))
   :bind
