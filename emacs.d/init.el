@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
-;; Set up package repos.
+;; Set up package repos
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -9,15 +9,16 @@
      (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-;; Install use-package for configuration management.
+;; Install use-package for configuration management
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
 
+;; Customize Emacs appearance
 (load (expand-file-name "appearance.el" user-emacs-directory))
 
-;; Olivetti mode: full-screen, no-distraction editing with limited text width.
+;; Olivetti mode: full-screen, no-distraction editing with limited text width
 (use-package olivetti
   :custom (olivetti-body-width 100)
   :bind ("C-c o" . 'olivetti-mode))
@@ -31,12 +32,12 @@
   :if (eq system-type 'darwin)
   :bind ([f10] . 'reveal-in-osx-finder))
 
-;; A single space does not mean the end of a sentence.
+;; A single space does not mean the end of a sentence
 (customize-set-variable 'sentence-end-double-space nil)
 
 (customize-set-variable 'warning-suppress-log-types '((comp)))
 
-;; When typing, replace the selected text.
+;; When typing, replace the selected text
 (setq delete-selection-mode t)
 
 ;; utf-8
