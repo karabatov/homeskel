@@ -64,14 +64,17 @@ export GITHUB_USERNAME="karabatov"
 #export SDKROOT=`xcrun --show-sdk-path --sdk macosx`
 
 # Bash completion
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-[ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
+if [ -f /usr/local/etc/bash_completion ]; then
+    . /usr/local/etc/bash_completion
+fi
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 # Ruby
-if [ -d $(brew --prefix)/opt/chruby ]; then
-    source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
-    source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
-fi
+#if [ -d $(brew --prefix)/opt/chruby ]; then
+#    source $(brew --prefix)/opt/chruby/share/chruby/chruby.sh
+#    source $(brew --prefix)/opt/chruby/share/chruby/auto.sh
+#fi
+eval "$(rbenv init - bash)"
 
 # editor
 export VISUAL="nvim"
