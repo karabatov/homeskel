@@ -74,6 +74,20 @@
   :init
   (which-key-mode))
 
+;; Reindent after move
+(defun indent-region-advice (&rest ignored)
+  (let ((deactivate deactivate-mark))
+    (if (region-active-p)
+        (indent-region (region-beginning) (region-end))
+      (indent-region (line-beginning-position) (line-end-position)))
+    (setq deactivate-mark deactivate)))
+
+(use-package move-text
+  :config
+  (move-text-default-bindings)
+  (advice-add 'move-text-up :after 'indent-region-advice)
+  (advice-add 'move-text-down :after 'indent-region-advice))
+
 ;; Highlight current line
 (global-hl-line-mode t)
 
@@ -276,7 +290,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult)))
+   '(toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
