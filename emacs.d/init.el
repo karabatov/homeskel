@@ -56,7 +56,10 @@
 (use-package avy
   :config
   (avy-setup-default)
-  :bind ("C-c C-j" . 'avy-resume))
+  :bind (
+         ("C-;" . 'avy-goto-char)
+         ("C-'" . 'avy-goto-char-2)
+         ("C-c C-j" . 'avy-resume)))
 
 ;; Always use spaces for indentation.
 (setq-default indent-tabs-mode nil)
