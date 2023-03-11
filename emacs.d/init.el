@@ -268,6 +268,23 @@
   ;; enabled right away. Note that this forces loading the package.
   (marginalia-mode))
 
+;; Fewer modifier key presses
+(use-package god-mode
+  :init
+  (god-mode)
+
+  :bind
+  (("<escape>" . god-local-mode)
+   :map god-local-mode-map
+   ("." . repeat)
+   ("i" . god-local-mode))
+  
+
+  :config
+  (setq god-mode-enable-function-key-translation nil)
+  (setq god-exempt-major-modes nil)
+  (setq god-exempt-predicates nil))
+
 ;; Do not allow the cursor in the minibuffer prompt
 (setq minibuffer-prompt-properties
       '(read-only t cursor-intangible t face minibuffer-prompt))
@@ -297,7 +314,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(which-key-posframe toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
+   '(god-mode which-key-posframe toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
