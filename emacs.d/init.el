@@ -281,9 +281,7 @@
   
 
   :config
-  (setq god-mode-enable-function-key-translation nil)
-  (setq god-exempt-major-modes nil)
-  (setq god-exempt-predicates nil))
+  (setq god-mode-enable-function-key-translation nil))
 
 ;; Do not allow the cursor in the minibuffer prompt
 (setq minibuffer-prompt-properties
