@@ -1,18 +1,22 @@
 ;; -*- lexical-binding: t -*-
 
+;; Bug in Emacs https://github.com/radian-software/straight.el/issues/701
+(setq find-file-visit-truename nil)
+
 ;; Set up package repos
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
-(when (< emacs-major-version 24)
-;; For important compatibility libraries like cl-lib
-     (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
 ;; Install use-package for configuration management
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+(eval-and-compile
+    (setq use-package-always-ensure t
+	  use-package-expand-minimally t))
 (require 'use-package)
 
 ;; Customize Emacs appearance
@@ -92,7 +96,7 @@
 (global-hl-line-mode t)
 
 ;; Hippie Expand
-(global-set-key [remap dabbrev-expand] 'hippie-expand)
+;; (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
 ;; Insert …
 (defun insert-multiple-dots ()
@@ -115,7 +119,7 @@
   ;; (setq vertico-resize t)
 
   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
+  (setq vertico-cycle t)
   )
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
@@ -290,7 +294,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
+   '(which-key-posframe toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
