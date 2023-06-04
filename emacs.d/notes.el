@@ -2,7 +2,9 @@
 
 ;; Deft configuration
 (use-package deft
-  :bind ([f8] . 'deft)
+  :bind (
+         ([f8] . 'deft)
+         ("C-<f8>" . 'deft))
   :custom
   (deft-directory "~/Documents/notes")
   (deft-use-filename-as-title t)
@@ -53,3 +55,9 @@
   (insert (format-time-string "%Y%m%d%H%M")))
 ;; (i)nsert (d)ate
 (global-set-key (kbd "C-, i d") 'yk-insert-date)
+
+(defun yk-deft-random-note ()
+  "Open a random Deft note."
+  (deft-open-file (seq-random-elt deft-all-files)))
+;; (r)andom (n)ote
+(global-set-key (kbd "C-, r n") 'yk-deft-random-note)
