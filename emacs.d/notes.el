@@ -58,6 +58,7 @@
 
 (defun yk-deft-random-note ()
   "Open a random Deft note."
+  (interactive)
   (deft-open-file (seq-random-elt deft-all-files)))
 ;; (r)andom (n)ote
 (global-set-key (kbd "C-, r n") 'yk-deft-random-note)
