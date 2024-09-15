@@ -14,14 +14,13 @@ local plugins = {
 
   { -- Zenburn
     "phha/zenburn.nvim",
-    config = function() require("zenburn").setup() end,
   },
 
   -- configure LazyVim
   {
     "folke/lazy.nvim",
     opts = {
-      colorscheme = "zenburn",
+      colorscheme = "desert",
     },
   }
 }

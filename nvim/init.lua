@@ -16,7 +16,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('config/settings')
-require('config/neovide')
 require('config/lazy')
+require('config/neovide')
 
 -- vim: ts=2 sts=2 sw=2 et
