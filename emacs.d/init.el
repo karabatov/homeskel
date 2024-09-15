@@ -312,7 +312,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(god-mode which-key-posframe toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text)))
+   '(god-mode which-key-posframe toml-mode rust-playground company yasnippet flycheck lsp-ui lsp-mode rustic zetteldeft which-key vertico use-package slime reveal-in-osx-finder protobuf-mode orderless olivetti markdown-mode marginalia magit labburn-theme consult move-text))
+ '(warning-suppress-types '(((undo discard-info)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
