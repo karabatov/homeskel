@@ -49,3 +49,9 @@ vim.o.incsearch = true
 vim.o.showmatch = true
 vim.o.hlsearch = true
 vim.keymap.set("n", "<leader><space>", ":noh<CR>") -- Clear highlighting
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank { higroup="Visual", timeout=300 }
+    end,
+    desc = "Briefly highlight yanked text"
+})
