@@ -33,12 +33,17 @@ local plugins = {
         "tpope/vim-fugitive"
     },
 
+    { -- Mason
+        "williamboman/mason.nvim",
+        after = "mason"
+    },
+
     -- configure LazyVim
     {
         "folke/lazy.nvim",
         opts = {
             colorscheme = "desert",
-        },
+        }
     }
 }
 

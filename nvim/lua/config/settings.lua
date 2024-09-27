@@ -17,6 +17,7 @@ vim.o.syntax = "on"
 vim.o.cursorline = true -- Highlight current line
 vim.o.showmode = true -- Show mode in status line
 vim.o.visualbell = true -- Bell visually
+vim.o.langmenu = "none" -- Always English menus
 
 -- Line numbers
 vim.o.number = true
