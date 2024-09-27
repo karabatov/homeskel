@@ -1,5 +1,5 @@
 require("neo-tree").setup({
-	-- Setup
+    -- Setup
 })
 
 vim.keymap.set("n", "<C-n>", ":Neotree reveal<CR>")
