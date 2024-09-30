@@ -28,9 +28,3 @@ configs.setup({
     highlight = { enable = true },
     indent = { enable = true }
 })
-
-vim.keymap.set("n", "<C-p>", function()
-        require("fzf-lua").files() 
-    end,
-    { desc = "Fzf Files" }
-)
