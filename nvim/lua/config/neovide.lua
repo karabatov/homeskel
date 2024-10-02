@@ -1,6 +1,6 @@
 if vim.g.neovide then
     -- Font
-    vim.o.guifont = "0xProto,Symbols_Nerd_Font_Mono:h16:#e-subpixelantialias"
+    vim.o.guifont = "0xProto,Symbols_Nerd_Font_Mono:h18:#e-subpixelantialias"
 
     -- Theme
     require("zenburn").setup()

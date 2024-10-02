@@ -38,6 +38,10 @@ local plugins = {
         after = "mason"
     },
 
+    { -- Session manager
+        "Shatur/neovim-session-manager"
+    },
+
     -- configure LazyVim
     {
         "folke/lazy.nvim",

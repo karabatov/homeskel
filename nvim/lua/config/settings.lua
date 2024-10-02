@@ -24,9 +24,8 @@ vim.o.number = true
 vim.o.relativenumber = true
 
 -- Line wrapping
-vim.o.linebreak = false
+vim.o.linebreak = true -- Wrap on whole words
 vim.o.wrap = true
-vim.o.textwidth = 79
 vim.o.formatoptions = "qrn1"
 
 -- Indentation
