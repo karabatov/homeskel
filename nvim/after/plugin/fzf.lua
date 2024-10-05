@@ -13,3 +13,9 @@ vim.keymap.set("n", "<C-l>", function()
     end,
     { desc = "Fzf Live Grep" }
 )
+
+vim.keymap.set("n", "<leader>b", function()
+        require("fzf-lua").buffers()
+    end,
+    { desc = "Fzf Buffers" }
+)
