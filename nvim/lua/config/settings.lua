@@ -18,6 +18,7 @@ vim.o.cursorline = true -- Highlight current line
 vim.o.showmode = true -- Show mode in status line
 vim.o.visualbell = true -- Bell visually
 vim.o.langmenu = "none" -- Always English menus
+vim.o.autochdir = true -- Change cwd to current file
 
 -- Line numbers
 vim.o.number = true

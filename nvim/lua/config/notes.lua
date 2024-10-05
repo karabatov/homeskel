@@ -7,6 +7,9 @@ vim.keymap.set("n", "<F8>", ":cd ~/Documents/notes/ | e 202312302001\\ 2024\\ ma
 -- Create new note with prompt (New Note)
 vim.keymap.set("n", "<leader>nn", ":cd ~/Documents/notes/<CR>:e <C-r>=strftime(\"%Y%m%d%H%M\")<CR> .md<left><left><left>")
 
+-- Insert filename (Complete File)
+vim.keymap.set("n", "<leader>cf", ":FzfLua complete-file<CR>")
+
 -- SEARCH
 
 -- Find word in file names (Word in Files)
