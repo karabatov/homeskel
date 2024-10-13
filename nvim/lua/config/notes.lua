@@ -11,7 +11,7 @@ vim.keymap.set('n', '<F8>', ':cd ' .. notes .. ' | e 202312302001\\ 2024\\ maste
 vim.keymap.set('n', '<leader>nn', ':cd ' .. notes .. '<CR>:e <C-r>=strftime(\"%Y%m%d%H%M\")<CR> .md<left><left><left>')
 
 -- Insert filename (Complete File)
-vim.keymap.set("n", "<leader>cf", ":FzfLua complete-file<CR>")
+vim.keymap.set("n", "<leader>cf", ":FzfLua complete_file<CR>")
 
 -- Open random note (Note at Random)
 vim.keymap.set("n", "<leader>nr", function()
