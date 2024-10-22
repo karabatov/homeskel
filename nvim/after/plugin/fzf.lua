@@ -3,7 +3,7 @@ require("fzf-lua").setup({
 })
 
 vim.keymap.set("n", "<C-p>", function()
-        require("fzf-lua").files()
+        require("fzf-lua").files({ multiprocess = false })
     end,
     { desc = "Fzf Files" }
 )
@@ -15,7 +15,7 @@ vim.keymap.set("n", "<C-l>", function()
 )
 
 vim.keymap.set("n", "<leader>b", function()
-        require("fzf-lua").buffers()
+        require("fzf-lua").buffers({ sort_lastused = false })
     end,
     { desc = "Fzf Buffers" }
 )
