@@ -33,6 +33,10 @@ local plugins = {
         "tpope/vim-fugitive"
     },
 
+    { -- vim-rooter
+        "airblade/vim-rooter"
+    },
+
     { -- Mason
         "williamboman/mason.nvim",
         after = "mason"

@@ -18,7 +18,7 @@ vim.o.cursorline = true -- Highlight current line
 vim.o.showmode = true -- Show mode in status line
 vim.o.visualbell = true -- Bell visually
 vim.o.langmenu = "none" -- Always English menus
-vim.o.autochdir = true -- Change cwd to current file
+vim.o.autochdir = false -- Change cwd to current file
 
 -- Line numbers
 vim.o.number = true
@@ -55,3 +55,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
     desc = "Briefly highlight yanked text"
 })
+
+-- Projects
+vim.o.exrc = true -- Enable loading of local .nvimrc and .exrc files
